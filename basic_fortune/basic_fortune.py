@@ -10,7 +10,7 @@ Students should use this script to get familiar with the Olin College Software D
 
 author = amonmillner
 """
-
+from random import randrange
 def fortune():
    """
    This function allows a user to type a name and receive a fortune.
@@ -21,4 +21,19 @@ def fortune():
    fortuner = ['you will soon get a big surprise', 'happiness will soon find you', 'things are looking up', 'a wish that you made in the past is about to come true', 'you will be greeted with a gift in the near future', 'the sky will fall on you tomorrow']
    print fortuner[(len(username)-1)%len(fortuner)]
 
-fortune()
+
+def fortunes():
+    """This function is similar to fortune(), but it uses a text file of
+    fortunes titled 'fortunes.txt'"""
+    username = raw_input('What is your name?\n')
+    print '\nThinking...\n'
+    txFile = open('fortunes.txt','r')
+    fortunes = txFile.readlines()
+    txFile.close()
+    numFortunes = len(fortunes)
+    yourFortune = fortunes[randrange(numFortunes)].rstrip('\n')
+    print 'Your current fortune is, "' + yourFortune + '"'
+
+
+fortunes()
+
