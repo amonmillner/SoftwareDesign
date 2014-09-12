@@ -24,7 +24,7 @@ def fortune():
 
 def fortunes():
     """This function is similar to fortune(), but it uses a text file of
-    fortunes titled 'fortunes.txt'"""
+    fortunes titled 'fortunes.txt' from http://www.breakthecookie.com/fortunecookiemessages.php?ctype=fortunecookiefortunes"""
     username = raw_input('What is your name?\n')
     print '\nThinking...\n'
     txFile = open('fortunes.txt','r')
