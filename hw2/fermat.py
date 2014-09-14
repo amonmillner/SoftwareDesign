@@ -12,8 +12,6 @@ def checkfermat(a,b,c,n):
         print '(Fermat\'s Last Theorem holds)'
 
 
-
-
 def testfermat():
     print 'Fermat\'s Last Theorem states that no set of positive integers a, b, and c can satisfy the expression'
     print 'a^n + b^n = c^n\n\'n\' is an any value greater than two. This function will allow you to',
@@ -67,10 +65,6 @@ def testfermat():
                 break
     print '\nSeeing if %d^%f + %d^%f = %d^%f ...\n\n' % (a,n,b,n,c,n)
     checkfermat(a,b,c,n)                
-
-
-
-
 
 
 checkfermat(3,4,5,2)
