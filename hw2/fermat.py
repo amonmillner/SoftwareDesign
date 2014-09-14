@@ -37,7 +37,10 @@ def testfermat():
         except ValueError:
             print "\'b\' must be a positive integer. Please enter a positive integer for \'b\'."
         else:
-            break
+            if b < 1:
+                print"\'b\' must be a positive integer. Please enter a positive integer for \'b\'."
+            else:
+                break
     print 'Please enter a positive integer for \'c\':'
     while True:
         c_check = raw_input('c = ')
@@ -46,16 +49,24 @@ def testfermat():
         except ValueError:
             print "\'c\' must be a positive integer. Please enter a positive integer for \'c\.'"
         else:
-            break
+            if c < 1:
+                print"\'c\' must be a positive integer. Please enter a positive integer for \'c\'."
+            else:
+                break
     print 'Please enter a value greater than 2 for \'n\':'
     while True:
-        c_check = raw_input('c = ')
+        n_check = raw_input('n = ')
         try:
-            c = int(c_check)
+            n = float(n_check)
         except ValueError:
-            print "\'c\' must be a positive integer. Please enter a positive integer for \'c\.'"
+            print "\'n\' must be a value greater than 2. Please enter a value greater than 2 for \'n\'."
         else:
-            break
+            if n <= 2:
+                print"\'n\' must be a value greater than 2. Please enter a value greater than 2 for \'n\'."
+            else:
+                break
+    print '\nSeeing if %d^%f + %d^%f = %d^%f ...\n\n' % (a,n,b,n,c,n)
+    checkfermat(a,b,c,n)                
 
 
 
