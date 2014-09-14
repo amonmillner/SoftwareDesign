@@ -36,6 +36,7 @@ def drawgrid(rows,cols):
 
 drawgrid(2,2)   # Question 3.5.1: Draws a 2x2 grid
 
-print '\n'*5
+print '\n' * 5
 
 drawgrid(4,4)   # Question 3.5.2: Draws a 4x4 grid
+
