@@ -13,15 +13,13 @@ def grid (size):
     row = "+" + "-"*4
     row2= "|" + " "*4
     
+    print (row*size + "+" "\n" + ((row2)*size + "|"+"\n")*4) * size,
     print row*size + "+" 
-    print((row2)*size + "|"+"\n")*4,
 
 
+grid(16)
 
-grid(4)
-grid(4)
-grid(4)
-grid(4)
+
 
 
 
