@@ -54,4 +54,4 @@ docs/_build/
 target/
 
 # Custom .gitignore
-scraping/authtokens.py 
+authtokens.py 
