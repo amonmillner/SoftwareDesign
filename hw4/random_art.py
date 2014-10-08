@@ -14,7 +14,7 @@ def Build_random_function(min_depth,max_depth):#generates a random function usin
     Takes 2 inputs min_depth minimum number of levels deep the function can be nested and 
     max_depth number of levels deep the function can be nested
     '''
-    x=random.randrange(0,4,1)
+    x=random.randrange(0,4,1) #generates random number
     if max_depth == 0:
         if x < 2:
             return ["y"]
@@ -33,9 +33,9 @@ def Build_random_function(min_depth,max_depth):#generates a random function usin
              return ["tanh",Build_random_function(min_depth-1,max_depth-1)]
 
                         
-func1 = ['prod',Build_random_function(3,9),Build_random_function(3,3)]
-func2 = ['prod',Build_random_function(3,9),Build_random_function(3,3)]
-func3 = ['prod',Build_random_function(3,9),Build_random_function(3,3)]
+func1 = ['prod',Build_random_function(3,9),Build_random_function(3,3)] #builds function for red channel
+func2 = ['prod',Build_random_function(3,9),Build_random_function(3,3)] #green
+func3 = ['prod',Build_random_function(3,9),Build_random_function(3,3)] #blue
 print func1
 bluh=['prod',['sin_pi',['x']],['sin_pi',['y']]]
 print Evaluate_function(bluh,1,1)
@@ -44,32 +44,31 @@ def Evaluate_function(f,x,y):
     replacing strings with mathematical operators and solving for 2 variables (x,y)
     takes 3 inputs the function you want to evaluate, x, and y
     '''
-    if f[0] == 'y':
+    if f[0] == 'y': #end condition 1
         return y
-    if f[0] =='x':
+    if f[0] =='x': #EC2
         return x
     elif f[0] == 'prod':
-        return Evaluate_function(f[1],x,y) * Evaluate_function(f[2],x,y)
+        return Evaluate_function(f[1],x,y) * Evaluate_function(f[2],x,y) #multiplies 2 functions
     elif f[0] == 'sin_pi':
-        return sin(Evaluate_function(f[1],x,y))
+        return sin(Evaluate_function(f[1],x,y)) 
     elif f[0] == 'cos_pi':
         return cos(Evaluate_function(f[1],x,y))
     elif f[0] == 'tanh':
-        return tanh(Evaluate_function(f[1],x,y))
+        return tanh(Evaluate_function(f[1],x,y)) #hyperbolic tangent
     elif f[0] == 'expm1':
-        return expm1(Evaluate_function(f[1],x,y))
+        return expm1(Evaluate_function(f[1],x,y)) #e^(x-1)
 
-im = Image.new("RGB",(350,350))
+im = Image.new("RGB",(350,350)) #generates blank image
 
 
-r=0
+r=0 #initial values
 g=0
 b=0
-
-for y in range(0,349):
-    for x in range (0,349):
-        r = Evaluate_function(func1,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0)
+for x in range(0,349): #columns
+    for y in range (0,349): #rows
+        r = Evaluate_function(func1,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0) #solves the function for 350 values of x between -1 and 1
         g = Evaluate_function(func2,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0)
         b = Evaluate_function(func3,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0)
-        im.putpixel((x, y), (int(((r+1)*255)/2),int(((g+1)*255)/2),int(((b+1)*255)/2)))
-im.save('pixa10',"JPEG")
+        im.putpixel((x, y), (int(((r+1)*255)/2),int(((g+1)*255)/2),int(((b+1)*255)/2))) # generates image from function - converting the z values (r,g,b) into ints between 0 and 255
+im.save('pixa10',"JPEG") #saves the image generated
