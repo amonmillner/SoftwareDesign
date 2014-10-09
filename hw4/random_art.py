@@ -57,7 +57,18 @@ def Evaluate_function(f,x,y):
     elif f[0] == 'tanh':
         return tanh(Evaluate_function(f[1],x,y)) #hyperbolic tangent
     elif f[0] == 'expm1':
-        return expm1(Evaluate_function(f[1],x,y)) #e^(x-1)
+        return (Evaluate_function(f[1],x,y))**2 #e^(x-1)
+        
+def Remap_value(val, input_start, input_end, output_start, output_end):
+    '''remaps a value in one range to an equivalent value in another. Takes 5 inputs val,input_start, input_end, output_start, output_end - 
+    val is the value you want remapped,  input_start and input_end are the min and max of the interval val is in. 
+    output_start and output_end define the interval you want the new value in.
+    '''
+    inputrange = input_end - input_start 
+    outputrange = output_end - output_start 
+    val2= float(val - input_start) / inputrange
+    valremapped= output_start + (val2*outputrange)
+    return valremapped
 
 im = Image.new("RGB",(350,350)) #generates blank image
 
@@ -67,8 +78,9 @@ g=0
 b=0
 for x in range(0,349): #columns
     for y in range (0,349): #rows
-        r = Evaluate_function(func1,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0) #solves the function for 350 values of x between -1 and 1
-        g = Evaluate_function(func2,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0)
-        b = Evaluate_function(func3,float(x)*2.0/349.0-1.0,float(y)*2.0/349.0-1.0)
-        im.putpixel((x, y), (int(((r+1)*255)/2),int(((g+1)*255)/2),int(((b+1)*255)/2))) # generates image from function - converting the z values (r,g,b) into ints between 0 and 255
+        r = Evaluate_function(func1,Remap_value(x,0,349,-1,1),Remap_value(y,0,349,-1,1)) #solves the function for 350 values of x between -1 and 1
+        g = Evaluate_function(func2,Remap_value(x,0,349,-1,1),Remap_value(y,0,349,-1,1))
+        print g
+        b = Evaluate_function(func3,Remap_value(x,0,349,-1,1),Remap_value(y,0,349,-1,1))
+        im.putpixel((x, y), (int(Remap_value(r,-1,1,0,255)),int(Remap_value(g,-1,1,0,255)),int(Remap_value(b,-1,1,0,255)))) # generates image from function - converting the z values (r,g,b) into ints between 0 and 255
 im.save('pixa10',"JPEG") #saves the image generated
